@@ -24,21 +24,6 @@ This project explores Airbnb listing data to identify patterns and relationships
 
 ---
 
-## 📂 Project Structure
-
-📁 01_airbnb_price_regression/
-│
-├── 📁 data/
-│ └── 📁 raw/ # Original dataset (listings.csv)
-│
-├── 📁 notebooks/
-│ └── airbnb_eda.ipynb # Jupyter notebook for analysis
-│
-└── README.md # Project overview
-
-
----
-
 ## 📦 Dataset
 
 Data Source: [Inside Airbnb](http://insideairbnb.com/get-the-data.html)  
@@ -49,7 +34,7 @@ File used: `listings.csv` (I downloaded for Vancouver. You can download for your
 ## How to Run
 
 ### Option 1: Google Colab  
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/YOUR_USERNAME/ml-projects/blob/main/01_airbnb_price_regression/notebooks/airbnb_eda.ipynb)
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/babakbaradaran/ml-projects/blob/main/01_airbnb_price_regression/notebooks/airbnb_eda.ipynb)
 
 ### Option 2: Local (VS Code or Jupyter)
 ```bash
