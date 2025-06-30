@@ -44,7 +44,7 @@ Includes information on:
 
 ---
 
-## 📒 Notebooks
+## Notebooks
 
 | Notebook           | Description |
 |--------------------|-------------|
