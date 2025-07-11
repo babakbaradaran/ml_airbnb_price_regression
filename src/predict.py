@@ -30,7 +30,7 @@ preprocessor = ColumnTransformer(
 
 pipeline = Pipeline(steps=[('preprocessor', preprocessor)])
 
-def predict_price_advanced(input_data):
+def predict_price_advanced_module(input_data):
     """
     Enhanced price prediction with:
     - Input validation
