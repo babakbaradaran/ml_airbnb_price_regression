@@ -2,7 +2,16 @@ import joblib
 import pandas as pd
 import numpy as np
 import logging
+import sys
+from pathlib import Path
+
+# Add project root to sys.path so imports like `from src...` work
+project_root = Path(__file__).resolve().parent.parent
+if str(project_root) not in sys.path:
+    sys.path.insert(0, str(project_root))
+
 from src.preprocessing import build_preprocessing_pipeline
+
 
 # Setup logging to file (recommended for production)
 logging.basicConfig(filename='prediction.log', level=logging.INFO, 
