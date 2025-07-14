@@ -5,7 +5,7 @@ import logging
 import sys
 from pathlib import Path
 
-# Add project root to sys.path so imports like 'from src...' work
+# Add project root to sys.path so imports like `from src...` work
 project_root = Path(__file__).resolve().parent.parent
 if str(project_root) not in sys.path:
     sys.path.insert(0, str(project_root))
@@ -32,7 +32,6 @@ except Exception as e:
     logging.exception("Failed to load model or preprocessing pipeline.")
     raise e
 
-
 # ------------------- Prediction Function -------------------
 def predict_price_advanced_module(input_data):
     """
@@ -54,6 +53,9 @@ def predict_price_advanced_module(input_data):
         else:
             raise ValueError("Input must be a dict, pd.Series, or pd.DataFrame")
 
+        # Log the input listing details
+        logging.info(f"Input listing: {input_df.to_dict(orient='records')[0]}")
+
         # Validate required fields
         required_fields = numerical_features + categorical_features
         missing_fields = [f for f in required_fields if f not in input_df.columns]
@@ -65,7 +67,7 @@ def predict_price_advanced_module(input_data):
             if not np.issubdtype(input_df[field].dtype, np.number):
                 raise TypeError(f"Field '{field}' must be numeric")
 
-        logging.info("Input validated successfully")
+        logging.info("Input validation passed")
 
         # Preprocessing
         logging.info("Preprocessing input for prediction")
@@ -81,10 +83,10 @@ def predict_price_advanced_module(input_data):
         prediction = model.predict(encoded_df)[0]
         prediction = round(float(prediction), 2)
 
-        # Log result
-        logging.info(f"Prediction successful. Predicted price: ${prediction:.2f} CAD")
+        # Log the prediction result
+        logging.info(f"Prediction completed successfully. Predicted price: ${prediction:.2f} CAD")
 
-        # Explanation output
+        # Print explanation
         print("\nHow this works:")
         print("- Input is validated and converted to DataFrame.")
         print("- Numerical fields are imputed using means.")
@@ -99,7 +101,6 @@ def predict_price_advanced_module(input_data):
     except Exception as e:
         logging.exception("Prediction failed.")
         raise e
-
 
 # ------------------- CLI Interface -------------------
 import argparse
