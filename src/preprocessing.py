@@ -19,7 +19,7 @@ def build_preprocessing_pipeline():
         'beds',
         'minimum_nights',
         'maximum_nights',
-        'number_of_reviews',
+        'number_of_reviews', 
         'review_scores_rating'
     ]
 

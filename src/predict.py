@@ -70,3 +70,28 @@ def predict_price_advanced_module(input_data):
     print("This is the estimated price per night (in CAD) for the listing described above.")
 
     return prediction
+
+
+import argparse
+import json
+import sys
+
+if __name__ == "__main__":
+    parser = argparse.ArgumentParser(description="Predict Airbnb listing price from input JSON")
+    parser.add_argument("input_json", help="Path to JSON file containing listing data")
+
+    args = parser.parse_args()
+
+    try:
+        with open(args.input_json, "r") as f:
+            listing_data = json.load(f)
+    except Exception as e:
+        print(f"Failed to read JSON file: {e}")
+        sys.exit(1)
+
+    try:
+        predicted = predict_price_advanced_module(listing_data)
+        print(f"\nPredicted price: ${predicted:.2f} CAD")
+    except Exception as e:
+        print(f"Prediction failed: {e}")
+        sys.exit(2)
