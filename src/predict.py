@@ -71,7 +71,7 @@ def predict_price_advanced_module(input_data):
 
     return prediction
 
-
+# Adding a CLI interface for the prediction function
 import argparse
 import json
 import sys
