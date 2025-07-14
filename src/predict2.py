@@ -1,19 +1,34 @@
 import joblib
 import pandas as pd
 import numpy as np
+from sklearn.pipeline import Pipeline
+from sklearn.compose import ColumnTransformer
+from sklearn.impute import SimpleImputer
+from sklearn.preprocessing import OneHotEncoder
 import logging
-from src.preprocessing import build_preprocessing_pipeline
 
-# Setup logging to file (recommended for production)
-logging.basicConfig(filename='prediction.log', level=logging.INFO, 
-                    format='%(asctime)s - %(levelname)s - %(message)s')
+# Setup logging
+logging.basicConfig(level=logging.INFO)
 
 # Load trained model and model columns
 model = joblib.load("models/random_forest_model.joblib")
 model_columns = joblib.load("models/model_columns.joblib")
 
-# Load preprocessing pipeline and feature lists
-pipeline, numerical_features, categorical_features = build_preprocessing_pipeline()
+# Define preprocessing pipeline
+numerical_features = ['accommodates', 'bathrooms', 'bedrooms', 'beds', 'minimum_nights',
+                      'maximum_nights', 'number_of_reviews', 'review_scores_rating']
+categorical_features = ['host_is_superhost', 'room_type', 'instant_bookable', 'neighbourhood_cleansed']
+
+numerical_transformer = SimpleImputer(strategy='mean')
+categorical_transformer = OneHotEncoder(handle_unknown='ignore')
+
+preprocessor = ColumnTransformer(
+    transformers=[
+        ('num', numerical_transformer, numerical_features),
+        ('cat', categorical_transformer, categorical_features)
+    ])
+
+pipeline = Pipeline(steps=[('preprocessor', preprocessor)])
 
 def predict_price_advanced_module(input_data):
     """
@@ -22,9 +37,9 @@ def predict_price_advanced_module(input_data):
     - Type checking
     - Scikit-learn preprocessing pipeline
     - Error handling and logging
-    - Modular preprocessing via src.preprocessing
+    - Explanation of each step for clarity
     """
-    # Convert input to DataFrame
+    # Convert to DataFrame
     if isinstance(input_data, dict):
         input_df = pd.DataFrame([input_data])
     elif isinstance(input_data, pd.Series):
@@ -40,16 +55,16 @@ def predict_price_advanced_module(input_data):
     if missing_fields:
         raise ValueError(f"Missing required fields: {missing_fields}")
 
-    # Type checking for numerical fields
+    # Type checking
     for field in numerical_features:
         if not np.issubdtype(input_df[field].dtype, np.number):
             raise TypeError(f"Field '{field}' must be numeric")
 
-    # Preprocessing
-    logging.info("Preprocessing input for prediction")
+    # Preprocess
+    logging.info("Preprocessing input...")
     processed_input = pipeline.fit_transform(input_df)
 
-    # Build encoded DataFrame and align with training columns
+    # Align with training columns
     encoded_df = pd.DataFrame(
         processed_input.toarray() if hasattr(processed_input, 'toarray') else processed_input
     )
@@ -59,14 +74,14 @@ def predict_price_advanced_module(input_data):
     prediction = model.predict(encoded_df)[0]
     prediction = round(float(prediction), 2)
 
-    # Explanation output
+    # Explanation
     print("\nHow this works:")
-    print("- Input is validated and converted to DataFrame.")
-    print("- Numerical fields are imputed using means.")
-    print("- Categorical fields are one-hot encoded.")
-    print("- Result is aligned with model training features.")
-    print("- Prediction is made using the trained model.\n")
+    print("- The input listing is validated and converted to a DataFrame.")
+    print("- Numerical features are imputed (missing values filled with mean).")
+    print("- Categorical variables are one-hot encoded using scikit-learn.")
+    print("- The resulting input is aligned with the original training columns.")
+    print("- Finally, the trained Random Forest model predicts the price.\n")
     print(f"Predicted price for this listing: ${prediction:.2f} CAD")
-    print("This is the estimated price per night (in CAD) for the listing described above.")
+    print("This is the estimated price per night (in CAD) for the listing provided above.")
 
     return prediction
