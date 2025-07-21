@@ -1,14 +1,14 @@
 {
   "host_is_superhost": true,
   "room_type": "Entire home/apt",
-  "accommodates": 2,
-  "bathrooms": 2.0,
-  "bedrooms":2,
-  "beds": 2,
-  "minimum_nights": 2,
-  "maximum_nights": 365,
-  "number_of_reviews": 18,
+  "accommodates": 4,
+  "bathrooms": 3.0,
+  "bedrooms": 4,
+  "beds": 6,
+  "minimum_nights": 12,
+  "maximum_nights": 1000,
+  "number_of_reviews": 36,
   "instant_bookable": false,
-  "review_scores_rating": 80.0,
+  "review_scores_rating": 90.0,
   "neighbourhood_cleansed": "Downtown"
 }

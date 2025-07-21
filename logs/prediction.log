@@ -37,3 +37,33 @@ Input     : host_is_superhost=True, room_type=Entire home/apt, accommodates=2, b
 Prediction: $154.41 CAD
 
 
+Request ID: d09f4c30-cbb4-492f-83e6-bbb93168e705
+Timestamp : 2025-07-21T23:13:31.967891
+Input     : host_is_superhost=True, room_type=Entire home/apt, accommodates=2, bathrooms=2.0, bedrooms=2, beds=2, minimum_nights=2, maximum_nights=365, number_of_reviews=18, instant_bookable=False, review_scores_rating=80.0, neighbourhood_cleansed=Downtown
+Prediction: $363.54 CAD
+
+
+Request ID: 4b1ed8c2-16f9-4db8-a686-b7ce1c41e759
+Timestamp : 2025-07-21T23:15:07.172200
+Input     : host_is_superhost=True, room_type=Entire home/apt, accommodates=5, bathrooms=3.0, bedrooms=3, beds=4, minimum_nights=7, maximum_nights=365, number_of_reviews=180, instant_bookable=False, review_scores_rating=92.0, neighbourhood_cleansed=Downtown
+Prediction: $631.20 CAD
+
+
+Request ID: 7e376204-56b1-4d11-9044-36015d090bf7
+Timestamp : 2025-07-21T23:17:26.392005
+Input     : host_is_superhost=True, room_type=Entire home/apt, accommodates=4, bathrooms=2.0, bedrooms=2, beds=4, minimum_nights=7, maximum_nights=365, number_of_reviews=180, instant_bookable=False, review_scores_rating=60.0, neighbourhood_cleansed=Downtown
+Prediction: $440.06 CAD
+
+
+Request ID: 035c61cf-5079-492b-b822-9872cdfcaeac
+Timestamp : 2025-07-21T23:19:12.916331
+Input     : host_is_superhost=False, room_type=Private room, accommodates=1, bathrooms=1.0, bedrooms=1, beds=1, minimum_nights=2, maximum_nights=30, number_of_reviews=5, instant_bookable=True, review_scores_rating=80.0, neighbourhood_cleansed=Kitsilano
+Prediction: $130.28 CAD
+
+
+Request ID: 7adcde5e-fc7a-41f1-ba2f-2e92f7afd99c
+Timestamp : 2025-07-21T23:19:33.492133
+Input     : host_is_superhost=True, room_type=Entire home/apt, accommodates=4, bathrooms=3.0, bedrooms=4, beds=6, minimum_nights=12, maximum_nights=1000, number_of_reviews=36, instant_bookable=False, review_scores_rating=90.0, neighbourhood_cleansed=Downtown
+Prediction: $451.70 CAD
+
+
