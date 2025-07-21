@@ -1,0 +1,15 @@
+
+
+
+Request ID: 4dc8bcc2-e39e-4fc9-9cf7-2d67dab20c3a
+Timestamp : 2025-07-14T23:31:12.415577
+Input     : host_is_superhost=True, room_type=Entire home/apt, accommodates=4, bathrooms=3.0, bedrooms=4, beds=6, price=230, minimum_nights=12, maximum_nights=1000, number_of_reviews=36, instant_bookable=False, review_scores_rating=90.0, neighbourhood_cleansed=Downtown
+Prediction: $154.41 CAD
+
+
+Request ID: 6efcfa44-6727-4df3-90da-b56cad0a4ce4
+Timestamp : 2025-07-14T23:33:08.282317
+Input     : host_is_superhost=True, room_type=Entire home/apt, accommodates=4, bathrooms=3.0, bedrooms=4, beds=6, minimum_nights=12, maximum_nights=1000, number_of_reviews=36, instant_bookable=False, review_scores_rating=90.0, neighbourhood_cleansed=Downtown
+Prediction: $154.41 CAD
+
+
