@@ -36,4 +36,4 @@ joblib.dump(model, model_dir / "random_forest_model.joblib")
 joblib.dump(X_processed_df.columns.tolist(), model_dir / "model_columns.joblib")
 joblib.dump(pipeline, model_dir / "fitted_pipeline.joblib")
 
-print("✅ Model, pipeline, and columns saved successfully.")
+print("Model, pipeline, and columns saved successfully.")

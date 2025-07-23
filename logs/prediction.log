@@ -67,3 +67,9 @@ Input     : host_is_superhost=True, room_type=Entire home/apt, accommodates=4, b
 Prediction: $451.70 CAD
 
 
+Request ID: 1ef7617b-7200-47fd-8280-443c5284e91d
+Timestamp : 2025-07-23T22:57:17.809615
+Input     : host_is_superhost=True, room_type=Entire home/apt, accommodates=4, bathrooms=3.0, bedrooms=4, beds=6, minimum_nights=12, maximum_nights=1000, number_of_reviews=36, instant_bookable=False, review_scores_rating=90.0, neighbourhood_cleansed=Downtown
+Prediction: $451.70 CAD
+
+
