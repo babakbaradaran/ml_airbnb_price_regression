@@ -8,12 +8,13 @@ from pathlib import Path
 from datetime import datetime
 
 # Ensure src is in the path
-project_root = Path(__file__).resolve().parent.parent
-if str(project_root) not in sys.path:
-    sys.path.insert(0, str(project_root))
+project_root = Path(__file__).resolve().parent  # Points to ml_airbnb_price_regression/
+src_path = str(project_root / "src")
+if src_path not in sys.path:
+    sys.path.insert(0, src_path)
 
 # Setup logging
-log_dir = Path("logs")
+log_dir = Path(project_root / "logs")
 log_dir.mkdir(exist_ok=True)
 logging.basicConfig(
     filename=log_dir / "prediction.log",
@@ -22,10 +23,10 @@ logging.basicConfig(
     level=logging.INFO
 )
 
-# Load model, pipeline, and model columns
-model = joblib.load("models/xgboost_model_v1_tuned.joblib")
-pipeline = joblib.load("models/fitted_pipeline.joblib")
-model_columns = joblib.load("models/model_columns_v1_tuned.joblib")
+# Load ensemble model and pipeline from the project root models/ directory
+ensemble_config = joblib.load(project_root / "models" / "ensemble_model.joblib")
+pipeline = joblib.load(project_root / "models" / "fitted_pipeline.joblib")
+model_columns = joblib.load(project_root / "models" / "model_columns.joblib")
 
 # Define feature sets for validation
 numerical_features = [
@@ -33,25 +34,28 @@ numerical_features = [
     'minimum_nights', 'maximum_nights',
     'number_of_reviews', 'review_scores_rating',
     'host_age_days', 'days_since_last_review', 'avg_review_score',
-    'accommodates_bedrooms', 'min_nights_reviews', 'season', 'distance_to_center_km'
+    'season', 'distance_to_center_km'
 ]
 
-categorical_features = [
-    'host_is_superhost', 'instant_bookable', 'neighbourhood_cleansed', 'room_type'
-]
-
-binary_amenities = [
+binary_features = [
     'Has_Wifi', 'Has_Kitchen', 'Has_Heating', 'Has_TV', 'Has_Essentials',
     'Has_Hair_Dryer', 'Has_Iron', 'Has_Free_Parking', 'Has_Hangers',
     'Has_Laptop_Friendly_Workspace', 'host_has_profile_pic_binary',
-    'host_identity_verified_binary'
+    'host_identity_verified_binary', 'host_is_superhost', 'instant_bookable'
 ]
 
-all_features = numerical_features + categorical_features + binary_amenities
+def compute_interaction_terms(df):
+    """Compute interaction terms for the dataset."""
+    df = df.copy()
+    if 'accommodates' in df.columns and 'bedrooms' in df.columns:
+        df['accommodates_bedrooms'] = df['accommodates'] * df['bedrooms']
+    if 'minimum_nights' in df.columns and 'number_of_reviews' in df.columns:
+        df['min_nights_reviews'] = df['minimum_nights'] * df['number_of_reviews']
+    return df
 
 def predict_price(input_data):
     """
-    Predicts Airbnb price using the trained pipeline and model.
+    Predicts Airbnb price using the ensemble model (RF, Ridge, XGB).
     Logs each prediction with a unique request ID.
     """
     request_id = str(uuid.uuid4())
@@ -67,59 +71,43 @@ def predict_price(input_data):
     else:
         raise ValueError("Input must be a dict, pd.Series, or pd.DataFrame")
 
+    # Compute interaction terms before validation
+    input_df = compute_interaction_terms(input_df)
+
     # Validate required fields
-    missing = [f for f in all_features if f not in input_df.columns]
+    required_features = numerical_features + binary_features + ['accommodates_bedrooms', 'min_nights_reviews']
+    missing = [f for f in required_features if f not in input_df.columns]
     if missing:
         raise ValueError(f"Missing required fields: {missing}")
 
     # Ensure correct dtypes
-    for field in numerical_features:
+    for field in numerical_features + ['accommodates_bedrooms', 'min_nights_reviews']:
         if field in input_df.columns and not np.issubdtype(input_df[field].dtype, np.number):
             raise TypeError(f"Field '{field}' must be numeric")
 
-    for field in categorical_features:
-        if field in input_df.columns:
-            input_df[field] = input_df[field].astype(str)
-
-    for field in binary_amenities:
+    for field in binary_features:
         if field in input_df.columns:
             input_df[field] = input_df[field].fillna(0).astype(int)
 
-    # Compute interaction terms
-    if 'accommodates' in input_df.columns and 'bedrooms' in input_df.columns:
-        input_df['accommodates_bedrooms'] = input_df['accommodates'] * input_df['bedrooms']
-    if 'minimum_nights' in input_df.columns and 'number_of_reviews' in input_df.columns:
-        input_df['min_nights_reviews'] = input_df['minimum_nights'] * input_df['number_of_reviews']
+    # Add dummy columns for neighbourhood_cleansed and room_type
+    for col in model_columns:
+        if (col.startswith('neighbourhood_cleansed_') or col.startswith('room_')) and col not in input_df.columns:
+            input_df[col] = 0
+        if col.startswith('neighbourhood_cleansed_') and 'neighbourhood_cleansed' in input_df.columns:
+            if input_df['neighbourhood_cleansed'].iloc[0] == col.split('_', 2)[-1]:
+                input_df[col] = 1
+        if col.startswith('room_') and 'room_type' in input_df.columns:
+            if input_df['room_type'].iloc[0] == col.split('_', 1)[-1]:
+                input_df[col] = 1
+
+    # Drop raw categorical columns
+    input_df = input_df.drop(columns=['neighbourhood_cleansed', 'room_type'], errors='ignore')
 
     # Clean column names
     input_df.columns = input_df.columns.str.replace(r'[\[\]<>]', '_', regex=True)
 
-    # Preserve non-categorical columns
-    non_cat_columns = [col for col in input_df.columns if col not in categorical_features]
-    non_cat_df = input_df[non_cat_columns].copy()
-
-    # One-hot encode categorical features and align with model_columns
-    dummies_df = pd.DataFrame()
-    for cat_col in categorical_features:
-        if cat_col in input_df.columns:
-            # Create dummies for the current value
-            dummies = pd.get_dummies(input_df[cat_col], prefix=cat_col, drop_first=True)
-            # Align with model_columns by adding missing dummy columns with zeros
-            for col in model_columns:
-                if col.startswith(f"{cat_col}_") and col not in dummies.columns:
-                    dummies[col] = 0
-            dummies_df = pd.concat([dummies_df, dummies], axis=1)
-
-    # Combine non-categorical and dummy columns
-    input_df = pd.concat([non_cat_df, dummies_df], axis=1)
-
-    # Ensure all model_columns are present, filling missing with zeros
-    for col in model_columns:
-        if col not in input_df.columns:
-            input_df[col] = 0
-
-    # Reorder columns to match model_columns
-    input_df = input_df[model_columns]
+    # Ensure all model_columns are present in the correct order
+    input_df = input_df.reindex(columns=model_columns, fill_value=0)
 
     # Preprocess
     try:
@@ -129,12 +117,23 @@ def predict_price(input_data):
         logging.error(f"Request ID {request_id}: Pipeline transformation failed: {e}")
         raise
 
-    # Predict
-    encoded_df = pd.DataFrame(
-        processed.toarray() if hasattr(processed, 'toarray') else processed,
-        columns=model_columns
-    )
-    prediction = round(float(model.predict(encoded_df)[0]), 2)
+    # Predict with each model
+    best_rf = ensemble_config['rf_model']
+    best_ridge = ensemble_config['ridge_model']
+    best_xgb = ensemble_config['xgboost_model']
+    weights = ensemble_config['weights']
+
+    y_pred_rf_log = best_rf.predict(processed)
+    y_pred_rf = np.expm1(y_pred_rf_log)
+    y_pred_ridge_log = best_ridge.predict(processed)
+    y_pred_ridge = np.expm1(y_pred_ridge_log)
+    y_pred_xgb_log = best_xgb.predict(processed)
+    y_pred_xgb_log = np.clip(y_pred_xgb_log, np.log1p(15), np.log1p(24503))
+    y_pred_xgb = np.expm1(y_pred_xgb_log)
+
+    # Combine predictions
+    prediction = weights['rf'] * y_pred_rf + weights['ridge'] * y_pred_ridge + weights['xgboost'] * y_pred_xgb
+    prediction = round(float(prediction[0]), 2)
 
     # Log to file
     input_str = ", ".join(f"{k}={v}" for k, v in input_data.items())
@@ -148,7 +147,6 @@ def predict_price(input_data):
 
     # Output
     print(f"\nPredicted price: ${prediction:.2f} CAD (per night)")
-
     return prediction
 
 if __name__ == "__main__":
