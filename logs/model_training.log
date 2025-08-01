@@ -1,0 +1,237 @@
+2025-07-31 12:42:20,267 - INFO - Number of features used: 53
+2025-07-31 12:42:20,267 - INFO - Best Random Forest parameters: {'n_estimators': 300, 'min_samples_split': 5, 'min_samples_leaf': 2, 'max_features': 0.7, 'max_depth': 20, 'bootstrap': True}
+2025-07-31 12:42:20,267 - INFO - Best CV MAE (log scale): 0.2686
+2025-07-31 12:42:20,267 - INFO - CV Mean MAE (log scale): 0.2753 (±0.0174)
+2025-07-31 12:42:20,267 - INFO - CV Mean RMSE (log scale): 0.3857 (±0.1797)
+2025-07-31 12:42:20,267 - INFO - CV Mean R²: 0.6832 (±0.0293)
+2025-07-31 12:42:20,317 - INFO - Random Forest Test MAE: 65.2473
+2025-07-31 12:42:20,330 - INFO - Random Forest Test RMSE: 116.8038
+2025-07-31 12:42:20,330 - INFO - Random Forest Test R²: 0.6086
+2025-07-31 12:42:20,404 - INFO - Saved Random Forest model to models\best_rf_model.joblib
+2025-07-31 12:42:20,421 - INFO - Top 10 Feature Importances:
+                   feature  importance
+0             accommodates    0.283664
+13   accommodates_bedrooms    0.141965
+12   distance_to_center_km    0.106368
+29       room_Private room    0.106046
+1                bathrooms    0.057375
+4           minimum_nights    0.054835
+8            host_age_days    0.042483
+9   days_since_last_review    0.034236
+10        avg_review_score    0.022469
+14      min_nights_reviews    0.019811
+2025-07-31 12:42:20,735 - INFO - Saved feature importance plot to plots/rf_feature_importance.png
+2025-07-31 12:42:20,838 - INFO - Saved actual vs predicted plot to plots/rf_actual_vs_predicted.png
+2025-07-31 12:55:04,336 - INFO - Created and fitted preprocessing pipeline
+2025-07-31 12:55:04,347 - INFO - Transformed X_train shape: (3390, 29), X_test shape: (848, 29)
+2025-07-31 12:57:00,946 - INFO - Created and fitted preprocessing pipeline
+2025-07-31 12:57:00,957 - INFO - Transformed X_train shape: (3390, 53), X_test shape: (848, 53)
+2025-07-31 12:57:15,933 - INFO - Best RF parameters: {'n_estimators': 100, 'min_samples_split': 2, 'min_samples_leaf': 1, 'max_features': 0.5, 'max_depth': 20, 'bootstrap': True}
+2025-07-31 12:57:15,933 - INFO - Best RF CV MAE (log scale): 0.2719
+2025-07-31 12:57:16,594 - INFO - Best Ridge parameters: {'alpha': np.float64(8.286427728546842)}
+2025-07-31 12:57:16,594 - INFO - Best Ridge CV MAE (log scale): 0.3000
+2025-07-31 13:06:58,385 - INFO - Created and fitted preprocessing pipeline
+2025-07-31 13:06:58,406 - INFO - Transformed X_train shape: (3390, 53), X_test shape: (848, 53)
+2025-07-31 13:07:53,248 - INFO - Best RF parameters: {'n_estimators': 200, 'min_samples_split': 5, 'min_samples_leaf': 1, 'max_features': 0.5, 'max_depth': None, 'bootstrap': True}
+2025-07-31 13:07:53,248 - INFO - Best RF CV MAE (log scale): 0.2720
+2025-07-31 13:07:53,478 - INFO - Best Ridge parameters: {'alpha': np.float64(8.286427728546842)}
+2025-07-31 13:07:53,478 - INFO - Best Ridge CV MAE (log scale): 0.3000
+2025-07-31 13:09:54,151 - INFO - Created and fitted preprocessing pipeline
+2025-07-31 13:09:54,161 - INFO - Transformed X_train shape: (3390, 53), X_test shape: (848, 53)
+2025-07-31 13:09:54,314 - INFO - Random Forest Test MAE: 108.64, RMSE: 188.06, R²: -0.0146
+2025-07-31 13:09:54,314 - INFO - Ridge Test MAE: 144.38, RMSE: 204.36, R²: -0.1981
+2025-07-31 13:09:54,314 - INFO - XGBoost Test MAE: 24262.38, RMSE: 24263.09, R²: -16887.9192
+2025-07-31 13:09:54,316 - INFO - Ensemble Weights - RF: 0.498, Ridge: 0.497, XGBoost: 0.005
+2025-07-31 13:09:54,317 - INFO - Ensemble Test MAE: 107.57, RMSE: 157.81, R²: 0.2855
+2025-07-31 13:09:54,461 - INFO - Saved ensemble configuration to models\ensemble_model.joblib
+2025-07-31 13:09:54,481 - INFO - Top 10 Feature Importances (Random Forest):
+                   feature  importance
+0             accommodates    0.283664
+13   accommodates_bedrooms    0.141965
+12   distance_to_center_km    0.106368
+29       room_Private room    0.106046
+1                bathrooms    0.057375
+4           minimum_nights    0.054835
+8            host_age_days    0.042483
+9   days_since_last_review    0.034236
+10        avg_review_score    0.022469
+14      min_nights_reviews    0.019811
+2025-07-31 13:09:54,488 - INFO - Saved feature importance to plots/rf_feature_importance.csv
+2025-07-31 13:09:54,595 - INFO - Saved ensemble actual vs predicted plot to plots/ensemble_actual_vs_predicted.png
+2025-07-31 13:15:32,051 - INFO - Created and fitted preprocessing pipeline
+2025-07-31 13:15:32,062 - INFO - Transformed X_train shape: (3390, 53), X_test shape: (848, 53)
+2025-07-31 13:15:49,015 - INFO - Created and fitted preprocessing pipeline
+2025-07-31 13:15:49,033 - INFO - Transformed X_train shape: (3390, 53), X_test shape: (848, 53)
+2025-07-31 13:19:41,592 - INFO - Created and fitted preprocessing pipeline
+2025-07-31 13:19:41,611 - INFO - Transformed X_train shape: (3390, 53), X_test shape: (848, 53)
+2025-07-31 13:22:10,323 - INFO - Created and fitted preprocessing pipeline
+2025-07-31 13:22:10,346 - INFO - Transformed X_train shape: (3390, 53), X_test shape: (848, 53)
+2025-07-31 13:22:10,774 - INFO - Random Forest Test MAE: 108.64, RMSE: 188.06, R²: -0.0146
+2025-07-31 13:22:10,774 - INFO - Ridge Test MAE: 144.38, RMSE: 204.36, R²: -0.1981
+2025-07-31 13:22:10,775 - INFO - XGBoost Test MAE: 4759.38, RMSE: 4763.04, R²: -649.8446
+2025-07-31 13:22:10,778 - INFO - Ensemble Weights - RF: 0.489, Ridge: 0.486, XGBoost: 0.025
+2025-07-31 13:22:10,778 - INFO - Ensemble Test MAE: 106.95, RMSE: 158.13, R²: 0.2827
+2025-07-31 13:22:11,125 - INFO - Saved ensemble configuration to models\ensemble_model.joblib
+2025-07-31 13:22:11,153 - INFO - Top 10 Feature Importances (Random Forest):
+                   feature  importance
+0             accommodates    0.283664
+13   accommodates_bedrooms    0.141965
+12   distance_to_center_km    0.106368
+29       room_Private room    0.106046
+1                bathrooms    0.057375
+4           minimum_nights    0.054835
+8            host_age_days    0.042483
+9   days_since_last_review    0.034236
+10        avg_review_score    0.022469
+14      min_nights_reviews    0.019811
+2025-07-31 13:22:11,166 - INFO - Saved feature importance to plots/rf_feature_importance.csv
+2025-07-31 13:22:11,377 - INFO - Saved ensemble actual vs predicted plot to plots/ensemble_actual_vs_predicted.png
+2025-07-31 14:06:09,974 - INFO - Number of features used: 53
+2025-07-31 14:06:09,988 - INFO - Best Random Forest parameters: {'n_estimators': 300, 'min_samples_split': 5, 'min_samples_leaf': 2, 'max_features': 0.7, 'max_depth': 20, 'bootstrap': True}
+2025-07-31 14:06:09,988 - INFO - Best CV MAE (log scale): 0.2686
+2025-07-31 14:06:09,991 - INFO - CV Mean MAE (log scale): 0.2753 (±0.0174)
+2025-07-31 14:06:09,992 - INFO - CV Mean RMSE (log scale): 0.3857 (±0.1797)
+2025-07-31 14:06:09,992 - INFO - CV Mean R²: 0.6832 (±0.0293)
+2025-07-31 14:06:10,044 - INFO - Random Forest Test MAE: 65.2473
+2025-07-31 14:06:10,045 - INFO - Random Forest Test RMSE: 116.8038
+2025-07-31 14:06:10,045 - INFO - Random Forest Test R²: 0.6086
+2025-07-31 14:06:10,150 - INFO - Saved Random Forest model to models\best_rf_model.joblib
+2025-07-31 14:06:10,169 - INFO - Top 10 Feature Importances:
+                   feature  importance
+0             accommodates    0.283664
+13   accommodates_bedrooms    0.141965
+12   distance_to_center_km    0.106368
+29       room_Private room    0.106046
+1                bathrooms    0.057375
+4           minimum_nights    0.054835
+8            host_age_days    0.042483
+9   days_since_last_review    0.034236
+10        avg_review_score    0.022469
+14      min_nights_reviews    0.019811
+2025-07-31 14:06:10,348 - INFO - Saved feature importance plot to plots/rf_feature_importance.png
+2025-07-31 14:06:10,474 - INFO - Saved actual vs predicted plot to plots/rf_actual_vs_predicted.png
+2025-07-31 14:20:32,419 - INFO - Created and fitted preprocessing pipeline
+2025-07-31 14:20:32,429 - INFO - Transformed X_train shape: (3390, 53), X_test shape: (848, 53)
+2025-07-31 14:20:32,636 - INFO - Random Forest Test MAE: 108.64, RMSE: 188.06, R²: -0.0146
+2025-07-31 14:20:32,637 - INFO - Ridge Test MAE: 144.38, RMSE: 204.36, R²: -0.1981
+2025-07-31 14:20:32,637 - INFO - XGBoost Test MAE: 4759.38, RMSE: 4763.04, R²: -649.8446
+2025-07-31 14:20:32,638 - INFO - Ensemble Weights - RF: 0.489, Ridge: 0.486, XGBoost: 0.025
+2025-07-31 14:20:32,638 - INFO - Ensemble Test MAE: 106.95, RMSE: 158.13, R²: 0.2827
+2025-07-31 14:20:32,803 - INFO - Saved ensemble configuration to models\ensemble_model.joblib
+2025-07-31 14:20:32,820 - INFO - Top 10 Feature Importances (Random Forest):
+                   feature  importance
+0             accommodates    0.283664
+13   accommodates_bedrooms    0.141965
+12   distance_to_center_km    0.106368
+29       room_Private room    0.106046
+1                bathrooms    0.057375
+4           minimum_nights    0.054835
+8            host_age_days    0.042483
+9   days_since_last_review    0.034236
+10        avg_review_score    0.022469
+14      min_nights_reviews    0.019811
+2025-07-31 14:20:32,826 - INFO - Saved feature importance to plots/rf_feature_importance.csv
+2025-07-31 14:20:32,937 - INFO - Saved ensemble actual vs predicted plot to plots/ensemble_actual_vs_predicted.png
+2025-07-31 14:36:06,143 - INFO - Created and fitted preprocessing pipeline
+2025-07-31 14:36:06,168 - INFO - Transformed X_train shape: (3390, 53), X_test shape: (848, 53)
+2025-07-31 14:36:06,325 - INFO - Random Forest Test MAE: 109.43, RMSE: 190.43, R²: -0.0403
+2025-07-31 14:36:06,325 - INFO - Ridge Test MAE: 137.17, RMSE: 206.24, R²: -0.2203
+2025-07-31 14:36:06,325 - INFO - XGBoost Test MAE: 9759.38, RMSE: 9761.16, R²: -2732.4586
+2025-07-31 14:36:32,239 - INFO - Ensemble Weights - RF: 0.336, Ridge: 0.328, XGBoost: 0.336
+2025-07-31 14:36:32,239 - INFO - Ensemble Test MAE: 3206.64, RMSE: 3211.19, R²: -294.8299
+2025-07-31 14:36:32,449 - INFO - Saved ensemble configuration to models\ensemble_model.joblib
+2025-07-31 14:36:32,474 - INFO - Top 10 Feature Importances (Random Forest):
+                   feature  importance
+0             accommodates    0.283664
+13   accommodates_bedrooms    0.141965
+12   distance_to_center_km    0.106368
+29       room_Private room    0.106046
+1                bathrooms    0.057375
+4           minimum_nights    0.054835
+8            host_age_days    0.042483
+9   days_since_last_review    0.034236
+10        avg_review_score    0.022469
+14      min_nights_reviews    0.019811
+2025-07-31 14:36:32,480 - INFO - Saved feature importance to plots/rf_feature_importance.csv
+2025-07-31 14:36:32,651 - INFO - Saved ensemble actual vs predicted plot to plots/ensemble_actual_vs_predicted.png
+2025-07-31 14:39:16,467 - INFO - Created and fitted preprocessing pipeline
+2025-07-31 14:39:16,492 - INFO - Transformed X_train shape: (3390, 53), X_test shape: (848, 53)
+2025-07-31 14:44:22,060 - INFO - Best RF parameters: {'n_estimators': 300, 'min_samples_split': 5, 'min_samples_leaf': 1, 'max_features': 0.5, 'max_depth': None}
+2025-07-31 14:44:22,060 - INFO - Best RF CV MAE (log scale): 0.2682
+2025-07-31 14:44:23,262 - INFO - Best Ridge parameters: {'alpha': np.float64(1.5873361110102087e-06)}
+2025-07-31 14:44:23,262 - INFO - Best Ridge CV MAE (log scale): 0.2915
+2025-07-31 14:46:45,154 - INFO - Best XGBoost parameters: {'subsample': 0.8, 'reg_lambda': 100.0, 'reg_alpha': 0.1, 'n_estimators': 400, 'min_child_weight': 3, 'max_depth': 5, 'learning_rate': 0.05, 'colsample_bytree': 0.7}
+2025-07-31 14:46:45,155 - INFO - Best XGBoost CV MAE (log scale): 0.2705
+2025-07-31 14:46:45,282 - INFO - Random Forest Test MAE: 65.78, RMSE: 118.36, R²: 0.5981
+2025-07-31 14:46:45,283 - INFO - Ridge Test MAE: 69.54, RMSE: 121.46, R²: 0.5767
+2025-07-31 14:46:45,283 - INFO - XGBoost Test MAE: 63.62, RMSE: 118.33, R²: 0.5983
+2025-07-31 15:41:57,438 - INFO - Created and fitted preprocessing pipeline
+2025-07-31 15:41:57,505 - INFO - Transformed X_train shape: (3390, 53), X_test shape: (848, 53)
+2025-07-31 15:48:28,542 - INFO - Created and fitted preprocessing pipeline
+2025-07-31 15:48:28,580 - INFO - Transformed X_train shape: (3390, 53), X_test shape: (848, 53)
+2025-07-31 15:48:29,234 - INFO - Random Forest Test MAE: 109.43, RMSE: 190.43, R²: -0.0403
+2025-07-31 15:48:29,234 - INFO - Ridge Test MAE: 137.17, RMSE: 206.24, R²: -0.2203
+2025-07-31 15:48:29,234 - INFO - XGBoost Test MAE: 14759.38, RMSE: 14760.56, R²: -6249.5030
+2025-07-31 15:49:14,403 - INFO - Ensemble Weights - RF: 0.336, Ridge: 0.328, XGBoost: 0.336
+2025-07-31 15:49:14,403 - INFO - Ensemble Test MAE: 4886.09, RMSE: 4889.08, R²: -684.7478
+2025-07-31 15:49:14,959 - INFO - Saved ensemble configuration to models\ensemble_model.joblib
+2025-07-31 15:49:15,016 - INFO - Top 10 Feature Importances (Random Forest):
+                   feature  importance
+0             accommodates    0.283664
+13   accommodates_bedrooms    0.141965
+12   distance_to_center_km    0.106368
+29       room_Private room    0.106046
+1                bathrooms    0.057375
+4           minimum_nights    0.054835
+8            host_age_days    0.042483
+9   days_since_last_review    0.034236
+10        avg_review_score    0.022469
+14      min_nights_reviews    0.019811
+2025-07-31 15:49:15,033 - INFO - Saved feature importance to plots/rf_feature_importance.csv
+2025-07-31 15:49:15,487 - INFO - Saved ensemble actual vs predicted plot to plots/ensemble_actual_vs_predicted.png
+2025-07-31 16:00:57,518 - INFO - Created and fitted preprocessing pipeline
+2025-07-31 16:00:57,555 - INFO - Transformed X_train shape: (3390, 53), X_test shape: (848, 53)
+2025-07-31 16:06:38,015 - INFO - Best RF parameters: {'n_estimators': 300, 'min_samples_split': 5, 'min_samples_leaf': 1, 'max_features': 0.5, 'max_depth': None}
+2025-07-31 16:06:38,015 - INFO - Best RF CV MAE (log scale): 0.2682
+2025-07-31 16:06:39,168 - INFO - Best Ridge parameters: {'alpha': np.float64(1.5873361110102087e-06)}
+2025-07-31 16:06:39,168 - INFO - Best Ridge CV MAE (log scale): 0.2915
+2025-07-31 16:08:14,160 - INFO - Best XGBoost parameters: {'subsample': 0.8, 'reg_lambda': 100.0, 'reg_alpha': 0.1, 'n_estimators': 400, 'min_child_weight': 3, 'max_depth': 5, 'learning_rate': 0.05, 'colsample_bytree': 0.7}
+2025-07-31 16:08:14,163 - INFO - Best XGBoost CV MAE (log scale): 0.2705
+2025-07-31 16:08:14,276 - INFO - Random Forest Test MAE: 65.78, RMSE: 118.36, R²: 0.5981
+2025-07-31 16:08:14,276 - INFO - Ridge Test MAE: 69.54, RMSE: 121.46, R²: 0.5767
+2025-07-31 16:08:14,276 - INFO - XGBoost Test MAE: 63.62, RMSE: 118.33, R²: 0.5983
+2025-07-31 16:08:32,122 - INFO - Ensemble Weights - RF: 0.336, Ridge: 0.327, XGBoost: 0.337
+2025-07-31 16:08:32,122 - INFO - Ensemble Test MAE: 64.09, RMSE: 116.62, R²: 0.6098
+2025-07-31 16:08:32,263 - INFO - Saved ensemble configuration to models\ensemble_model.joblib
+2025-07-31 16:08:32,296 - INFO - Top 10 Feature Importances (Random Forest):
+                   feature  importance
+0             accommodates    0.222569
+13   accommodates_bedrooms    0.144665
+29       room_Private room    0.107267
+12   distance_to_center_km    0.100490
+1                bathrooms    0.062484
+4           minimum_nights    0.047948
+8            host_age_days    0.039838
+2                 bedrooms    0.034395
+3                     beds    0.033435
+9   days_since_last_review    0.032736
+2025-07-31 16:08:32,306 - INFO - Saved feature importance to plots/rf_feature_importance.csv
+2025-07-31 16:08:32,477 - INFO - Saved ensemble actual vs predicted plot to plots/ensemble_actual_vs_predicted.png
+2025-07-31 16:33:18,640 - ERROR - Request ID 6f05b19e-2e57-4997-a889-b0a3546e3e71: Input validation failed: Invalid room type(s): ['Entire home/apt']
+2025-07-31 16:36:01,105 - INFO - Request ID 15c29938-a618-42c6-b5d3-197da1988a86: Processed shape: (1, 53)
+2025-07-31 16:36:01,120 - INFO - Request ID: 15c29938-a618-42c6-b5d3-197da1988a86
+Timestamp: 2025-07-31T23:36:01.061052
+Input: accommodates=2, bathrooms=1.0, bedrooms=1.0, beds=1.0, minimum_nights=2, maximum_nights=1125, number_of_reviews=35, review_scores_rating=92.0, host_age_days=2000, days_since_last_review=100, avg_review_score=90.0, season=1, distance_to_center_km=2.5, Has_Wifi=1, Has_Kitchen=1, Has_Heating=1, Has_TV=1, Has_Essentials=1, Has_Hair_Dryer=0, Has_Iron=1, Has_Free_Parking=0, Has_Hangers=1, Has_Laptop_Friendly_Workspace=1, host_has_profile_pic_binary=1, host_identity_verified_binary=1, host_is_superhost=1, instant_bookable=1, neighbourhood_cleansed=Downtown, room_type=Entire home/apt
+Prediction: $341932.74 CAD
+
+2025-07-31 16:38:10,888 - INFO - Request ID 4b7ad445-6344-4f7d-9f71-56c29855be87: Interaction terms computed
+2025-07-31 16:38:10,890 - INFO - Request ID 4b7ad445-6344-4f7d-9f71-56c29855be87: Input validation passed
+2025-07-31 16:38:10,906 - INFO - Request ID 4b7ad445-6344-4f7d-9f71-56c29855be87: Processed shape: (1, 53)
+2025-07-31 16:38:10,907 - INFO - Request ID 4b7ad445-6344-4f7d-9f71-56c29855be87: Processed feature stats: min=-1.00, max=620.59
+2025-07-31 16:38:10,931 - INFO - Request ID 4b7ad445-6344-4f7d-9f71-56c29855be87: RF log=5.22, Ridge log=9.62, XGB log=5.39
+2025-07-31 16:38:10,931 - INFO - Request ID 4b7ad445-6344-4f7d-9f71-56c29855be87: RF=184.22, Ridge=15000.00, XGB=219.13
+2025-07-31 16:38:10,931 - INFO - Request ID: 4b7ad445-6344-4f7d-9f71-56c29855be87
+Timestamp: 2025-07-31T23:38:10.886457
+Input: accommodates=2, bathrooms=1.0, bedrooms=1.0, beds=1.0, minimum_nights=2, maximum_nights=1125, number_of_reviews=35, review_scores_rating=92.0, host_age_days=2000, days_since_last_review=100, avg_review_score=90.0, season=1, distance_to_center_km=2.5, Has_Wifi=1, Has_Kitchen=1, Has_Heating=1, Has_TV=1, Has_Essentials=1, Has_Hair_Dryer=0, Has_Iron=1, Has_Free_Parking=0, Has_Hangers=1, Has_Laptop_Friendly_Workspace=1, host_has_profile_pic_binary=1, host_identity_verified_binary=1, host_is_superhost=1, instant_bookable=1, neighbourhood_cleansed=Downtown, room_type=Entire home/apt
+Prediction: $5034.96 CAD
+

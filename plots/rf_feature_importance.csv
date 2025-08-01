@@ -1,0 +1,54 @@
+feature,importance
+accommodates,0.22256915986050174
+accommodates_bedrooms,0.14466483153007062
+room_Private room,0.10726686187671869
+distance_to_center_km,0.10049011858280245
+bathrooms,0.06248438900646046
+minimum_nights,0.047948405502454064
+host_age_days,0.03983805477308312
+bedrooms,0.03439462839144457
+beds,0.03343482563718708
+days_since_last_review,0.032735655724097125
+avg_review_score,0.02323307880398228
+min_nights_reviews,0.02317294758379212
+number_of_reviews,0.019168034374865726
+maximum_nights,0.01871083235449568
+review_scores_rating,0.01616788855514045
+neighbourhood_cleansed_Downtown,0.012940799680529533
+season,0.007833519524330939
+neighbourhood_cleansed_Kitsilano,0.006586698945635656
+instant_bookable,0.005026682171932322
+host_is_superhost,0.0036834992080799654
+host_has_profile_pic_binary,0.003260591526117012
+host_identity_verified_binary,0.0032043926625564445
+neighbourhood_cleansed_Fairview,0.0031100859659174153
+neighbourhood_cleansed_Downtown Eastside,0.002608340898532733
+neighbourhood_cleansed_West End,0.002528088273643574
+neighbourhood_cleansed_Hastings-Sunrise,0.002491911447283002
+neighbourhood_cleansed_West Point Grey,0.00241822109502462
+neighbourhood_cleansed_Mount Pleasant,0.001985654102264693
+neighbourhood_cleansed_Kensington-Cedar Cottage,0.0018756356275586022
+neighbourhood_cleansed_Kerrisdale,0.0015954982807072971
+neighbourhood_cleansed_Victoria-Fraserview,0.0014770063433536885
+neighbourhood_cleansed_Grandview-Woodland,0.0014733690184126542
+neighbourhood_cleansed_Renfrew-Collingwood,0.0014195825367663078
+neighbourhood_cleansed_Riley Park,0.0012892728321978611
+room_Shared room,0.0012325696472431748
+neighbourhood_cleansed_Killarney,0.0010981733585570558
+neighbourhood_cleansed_Dunbar Southlands,0.0010249482025986422
+neighbourhood_cleansed_Sunset,0.0009376370925133422
+neighbourhood_cleansed_Shaughnessy,0.0008844081268880137
+neighbourhood_cleansed_Oakridge,0.0008162082758788069
+neighbourhood_cleansed_Marpole,0.0005129680927841658
+neighbourhood_cleansed_South Cambie,0.00021437669946870923
+neighbourhood_cleansed_Strathcona,0.00019014780612750895
+Has_Kitchen,0.0
+Has_Wifi,0.0
+Has_Hair_Dryer,0.0
+Has_Essentials,0.0
+Has_TV,0.0
+Has_Heating,0.0
+Has_Laptop_Friendly_Workspace,0.0
+Has_Hangers,0.0
+Has_Free_Parking,0.0
+Has_Iron,0.0

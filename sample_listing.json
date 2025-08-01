@@ -7,10 +7,11 @@
   "maximum_nights": 1125,
   "number_of_reviews": 35,
   "review_scores_rating": 92.0,
-  "host_is_superhost": "t",
-  "instant_bookable": "t",
-  "neighbourhood_cleansed": "Downtown",
-  "room_type": "Entire home/apt",
+  "host_age_days": 2000,
+  "days_since_last_review": 100,
+  "avg_review_score": 90.0,
+  "season": 1,
+  "distance_to_center_km": 2.5,
   "Has_Wifi": 1,
   "Has_Kitchen": 1,
   "Has_Heating": 1,
@@ -20,5 +21,11 @@
   "Has_Iron": 1,
   "Has_Free_Parking": 0,
   "Has_Hangers": 1,
-  "Has_Laptop_Friendly_Workspace": 1
+  "Has_Laptop_Friendly_Workspace": 1,
+  "host_has_profile_pic_binary": 1,
+  "host_identity_verified_binary": 1,
+  "host_is_superhost": 1,
+  "instant_bookable": 1,
+  "neighbourhood_cleansed": "Downtown",
+  "room_type": "Entire home/apt"
 }

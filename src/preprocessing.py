@@ -1,69 +1,67 @@
-from sklearn.pipeline import Pipeline
-from sklearn.compose import ColumnTransformer
-from sklearn.impute import SimpleImputer
-from sklearn.preprocessing import StandardScaler, FunctionTransformer
+# src/preprocessing.py
 import pandas as pd
 import numpy as np
+from sklearn.compose import ColumnTransformer
+from sklearn.preprocessing import RobustScaler, OneHotEncoder
+from sklearn.pipeline import Pipeline
 
-def identity_function(X):
-    """Pass-through function for dummy columns."""
-    return X
-
-def build_preprocessing_pipeline():
+def build_preprocessing_pipeline(scaler=RobustScaler()):
     """
-    Builds a preprocessing pipeline for Airbnb price prediction, including feature engineering and scaling.
-
+    Build a preprocessing pipeline for numerical, binary, and dummy features.
+    
+    Parameters:
+    scaler: Scaler object for numerical features (default: RobustScaler())
+    
     Returns:
-    - pipeline: ColumnTransformer pipeline
-    - numerical_features: List of numerical columns used
-    - binary_features: List of binary columns used
-    - dummy_features: List of dummy columns (neighbourhood_cleansed_*, room_*)
+    pipeline: Preprocessing pipeline
+    numerical_features: List of numerical feature names
+    binary_features: List of binary feature names
+    dummy_features: List of dummy feature names
     """
     numerical_features = [
         'accommodates', 'bathrooms', 'bedrooms', 'beds',
         'minimum_nights', 'maximum_nights',
         'number_of_reviews', 'review_scores_rating',
         'host_age_days', 'days_since_last_review', 'avg_review_score',
-        'accommodates_bedrooms', 'min_nights_reviews', 'season', 'distance_to_center_km'
+        'season', 'distance_to_center_km',
+        'accommodates_bedrooms', 'min_nights_reviews'
     ]
-
     binary_features = [
         'Has_Wifi', 'Has_Kitchen', 'Has_Heating', 'Has_TV', 'Has_Essentials',
         'Has_Hair_Dryer', 'Has_Iron', 'Has_Free_Parking', 'Has_Hangers',
         'Has_Laptop_Friendly_Workspace', 'host_has_profile_pic_binary',
         'host_identity_verified_binary', 'host_is_superhost', 'instant_bookable'
     ]
-
-    dummy_features = []  # Populated dynamically during fitting
-
-    # Numerical transformer: Impute with mean, then scale
-    numerical_transformer = Pipeline(steps=[
-        ('imputer', SimpleImputer(strategy='mean')),
-        ('scaler', StandardScaler())
-    ])
-
-    # Binary transformer: Impute with 0
-    binary_transformer = SimpleImputer(strategy='constant', fill_value=0)
-
-    # Dummy transformer: Pass through pre-encoded dummy columns
-    dummy_transformer = FunctionTransformer(identity_function, validate=False)
-
-    # Combine transformers
-    preprocessor = ColumnTransformer(transformers=[
-        ('num', numerical_transformer, numerical_features),
-        ('bin', binary_transformer, binary_features),
-        ('dum', dummy_transformer, dummy_features)
-    ])
-
+    dummy_features = [
+        col for col in pd.read_csv("data/processed/featured_listings.csv").columns 
+        if col.startswith('neighbourhood_cleansed_') or col.startswith('room_')
+    ]
+    
+    preprocessor = ColumnTransformer(
+        transformers=[
+            ('num', scaler, numerical_features),
+            ('bin', 'passthrough', binary_features),
+            ('dum', OneHotEncoder(drop='first', sparse_output=False, handle_unknown='ignore'), dummy_features)
+        ],
+        remainder='drop'
+    )
+    
     pipeline = Pipeline(steps=[('preprocessor', preprocessor)])
-
     return pipeline, numerical_features, binary_features, dummy_features
 
-def compute_interaction_terms(X):
-    """Compute interaction terms for the dataset."""
-    X = X.copy()
-    if 'accommodates' in X.columns and 'bedrooms' in X.columns:
-        X['accommodates_bedrooms'] = X['accommodates'] * X['bedrooms']
-    if 'minimum_nights' in X.columns and 'number_of_reviews' in X.columns:
-        X['min_nights_reviews'] = X['minimum_nights'] * X['number_of_reviews']
-    return X
+def compute_interaction_terms(df):
+    """
+    Compute interaction terms for specific feature pairs.
+    
+    Parameters:
+    df: DataFrame with input features
+    
+    Returns:
+    df: DataFrame with added interaction terms
+    """
+    df = df.copy()
+    if 'accommodates' in df.columns and 'bedrooms' in df.columns:
+        df['accommodates_bedrooms'] = df['accommodates'] * df['bedrooms']
+    if 'minimum_nights' in df.columns and 'number_of_reviews' in df.columns:
+        df['min_nights_reviews'] = df['minimum_nights'] * df['number_of_reviews']
+    return df
