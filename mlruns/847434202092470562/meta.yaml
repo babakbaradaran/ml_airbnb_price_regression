@@ -1,0 +1,6 @@
+artifact_location: file:///C:/Users/Babak.Baradaranhezav/ml-projects/ml_airbnb_price_regression/mlruns/847434202092470562
+creation_time: 1755536847570
+experiment_id: '847434202092470562'
+last_update_time: 1755536847570
+lifecycle_stage: active
+name: airbnb_price_inference

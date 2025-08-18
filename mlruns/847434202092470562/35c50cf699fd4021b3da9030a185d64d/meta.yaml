@@ -1,0 +1,15 @@
+artifact_uri: file:///C:/Users/Babak.Baradaranhezav/ml-projects/ml_airbnb_price_regression/mlruns/847434202092470562/35c50cf699fd4021b3da9030a185d64d/artifacts
+end_time: 1755555779598
+entry_point_name: ''
+experiment_id: '847434202092470562'
+lifecycle_stage: active
+run_id: 35c50cf699fd4021b3da9030a185d64d
+run_name: predict_4223b113-bc73-4212-9db1-227e8b33dedc
+run_uuid: 35c50cf699fd4021b3da9030a185d64d
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1755555779253
+status: 3
+tags: []
+user_id: Babak.Baradaranhezav
