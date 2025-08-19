@@ -235,3 +235,68 @@ Timestamp: 2025-07-31T23:38:10.886457
 Input: accommodates=2, bathrooms=1.0, bedrooms=1.0, beds=1.0, minimum_nights=2, maximum_nights=1125, number_of_reviews=35, review_scores_rating=92.0, host_age_days=2000, days_since_last_review=100, avg_review_score=90.0, season=1, distance_to_center_km=2.5, Has_Wifi=1, Has_Kitchen=1, Has_Heating=1, Has_TV=1, Has_Essentials=1, Has_Hair_Dryer=0, Has_Iron=1, Has_Free_Parking=0, Has_Hangers=1, Has_Laptop_Friendly_Workspace=1, host_has_profile_pic_binary=1, host_identity_verified_binary=1, host_is_superhost=1, instant_bookable=1, neighbourhood_cleansed=Downtown, room_type=Entire home/apt
 Prediction: $5034.96 CAD
 
+2025-08-15 14:39:02,204 - INFO - Number of features used: 53
+2025-08-15 14:39:02,204 - INFO - Best Random Forest parameters: {'n_estimators': 300, 'min_samples_split': 5, 'min_samples_leaf': 2, 'max_features': 0.7, 'max_depth': 20, 'bootstrap': True}
+2025-08-15 14:39:02,204 - INFO - Best CV MAE (log scale): 0.2686
+2025-08-15 14:39:02,220 - INFO - CV Mean MAE (log scale): 0.2753 (±0.0174)
+2025-08-15 14:39:02,221 - INFO - CV Mean RMSE (log scale): 0.3857 (±0.1797)
+2025-08-15 14:39:02,221 - INFO - CV Mean R²: 0.6832 (±0.0293)
+2025-08-15 14:39:02,288 - INFO - Random Forest Test MAE: 65.2473
+2025-08-15 14:39:02,288 - INFO - Random Forest Test RMSE: 116.8038
+2025-08-15 14:39:02,288 - INFO - Random Forest Test R²: 0.6086
+2025-08-15 14:39:02,540 - INFO - Saved Random Forest model to models\best_rf_model.joblib
+2025-08-15 14:39:02,562 - INFO - Top 10 Feature Importances:
+                   feature  importance
+0             accommodates    0.283664
+13   accommodates_bedrooms    0.141965
+12   distance_to_center_km    0.106368
+29       room_Private room    0.106046
+1                bathrooms    0.057375
+4           minimum_nights    0.054835
+8            host_age_days    0.042483
+9   days_since_last_review    0.034236
+10        avg_review_score    0.022469
+14      min_nights_reviews    0.019811
+2025-08-15 14:39:03,510 - INFO - Saved feature importance plot to plots/rf_feature_importance.png
+2025-08-15 14:39:03,795 - INFO - Saved actual vs predicted plot to plots/rf_actual_vs_predicted.png
+2025-08-15 15:02:56,385 - INFO - Created and fitted preprocessing pipeline
+2025-08-15 15:02:56,417 - INFO - Transformed X_train shape: (3390, 53), X_test shape: (848, 53)
+2025-08-15 15:08:28,065 - INFO - Best RF parameters: {'n_estimators': 300, 'min_samples_split': 5, 'min_samples_leaf': 1, 'max_features': 0.5, 'max_depth': None}
+2025-08-15 15:08:28,065 - INFO - Best RF CV MAE (log scale): 0.2682
+2025-08-15 15:08:29,242 - INFO - Best Ridge parameters: {'alpha': np.float64(1.5873361110102087e-06)}
+2025-08-15 15:08:29,242 - INFO - Best Ridge CV MAE (log scale): 0.2915
+2025-08-15 15:10:33,321 - INFO - Best XGBoost parameters: {'subsample': 0.8, 'reg_lambda': 100.0, 'reg_alpha': 0.1, 'n_estimators': 400, 'min_child_weight': 3, 'max_depth': 5, 'learning_rate': 0.05, 'colsample_bytree': 0.7}
+2025-08-15 15:10:33,321 - INFO - Best XGBoost CV MAE (log scale): 0.2705
+2025-08-15 15:10:33,449 - INFO - Random Forest Test MAE: 65.78, RMSE: 118.36, R²: 0.5981
+2025-08-15 15:10:33,449 - INFO - Ridge Test MAE: 69.54, RMSE: 121.46, R²: 0.5767
+2025-08-15 15:10:33,450 - INFO - XGBoost Test MAE: 63.62, RMSE: 118.33, R²: 0.5983
+2025-08-15 15:11:00,732 - INFO - Ensemble Weights - RF: 0.336, Ridge: 0.327, XGBoost: 0.337
+2025-08-15 15:11:00,732 - INFO - Ensemble Test MAE: 64.09, RMSE: 116.62, R²: 0.6098
+2025-08-15 15:11:00,913 - INFO - Saved ensemble configuration to models\ensemble_model.joblib
+2025-08-15 15:11:00,934 - INFO - Top 10 Feature Importances (Random Forest):
+                   feature  importance
+0             accommodates    0.222569
+13   accommodates_bedrooms    0.144665
+29       room_Private room    0.107267
+12   distance_to_center_km    0.100490
+1                bathrooms    0.062484
+4           minimum_nights    0.047948
+8            host_age_days    0.039838
+2                 bedrooms    0.034395
+3                     beds    0.033435
+9   days_since_last_review    0.032736
+2025-08-15 15:11:00,951 - INFO - Saved feature importance to plots/rf_feature_importance.csv
+2025-08-15 15:11:01,121 - INFO - Saved ensemble actual vs predicted plot to plots/ensemble_actual_vs_predicted.png
+2025-08-15 15:46:16,411 - INFO - Request ID 56c1f045-a5ec-4dab-99ad-fa0e333f5c72: Interaction terms computed
+2025-08-15 15:46:16,419 - INFO - Request ID 56c1f045-a5ec-4dab-99ad-fa0e333f5c72: Input validation passed
+2025-08-15 15:46:16,433 - INFO - Request ID 56c1f045-a5ec-4dab-99ad-fa0e333f5c72: Input numerical features: {'accommodates': np.int64(2), 'bathrooms': np.float64(1.0), 'bedrooms': np.float64(1.0), 'beds': np.float64(1.0), 'minimum_nights': np.int64(2), 'maximum_nights': np.int64(365), 'number_of_reviews': np.int64(35), 'review_scores_rating': np.float64(92.0), 'host_age_days': np.int64(2000), 'days_since_last_review': np.int64(100), 'avg_review_score': np.float64(90.0), 'season': np.int64(1), 'distance_to_center_km': np.float64(2.5), 'accommodates_bedrooms': np.float64(2.0), 'min_nights_reviews': np.int64(70)}
+2025-08-15 15:46:16,479 - INFO - Request ID 56c1f045-a5ec-4dab-99ad-fa0e333f5c72: Processed shape: (1, 53)
+2025-08-15 15:46:16,481 - INFO - Request ID 56c1f045-a5ec-4dab-99ad-fa0e333f5c72: Processed feature stats: min=-1.00, max=620.59
+2025-08-15 15:46:16,484 - INFO - Request ID 56c1f045-a5ec-4dab-99ad-fa0e333f5c72: Saved processed input to logs/processed_input_56c1f045-a5ec-4dab-99ad-fa0e333f5c72.csv
+2025-08-15 15:46:16,510 - INFO - Request ID 56c1f045-a5ec-4dab-99ad-fa0e333f5c72: RF log=5.20, Ridge log=6.91, XGB log=5.40
+2025-08-15 15:46:16,510 - INFO - Request ID 56c1f045-a5ec-4dab-99ad-fa0e333f5c72: RF=179.58, Ridge=1000.00, XGB=221.28
+2025-08-15 15:46:16,510 - INFO - Request ID: 56c1f045-a5ec-4dab-99ad-fa0e333f5c72
+Timestamp: 2025-08-15T22:46:16.407612
+Input: accommodates=2, bathrooms=1.0, bedrooms=1.0, beds=1.0, minimum_nights=2, maximum_nights=1125, number_of_reviews=35, review_scores_rating=92.0, host_age_days=2000, days_since_last_review=100, avg_review_score=90.0, season=1, distance_to_center_km=2.5, Has_Wifi=1, Has_Kitchen=1, Has_Heating=1, Has_TV=1, Has_Essentials=1, Has_Hair_Dryer=0, Has_Iron=1, Has_Free_Parking=0, Has_Hangers=1, Has_Laptop_Friendly_Workspace=1, host_has_profile_pic_binary=1, host_identity_verified_binary=1, host_is_superhost=1, instant_bookable=1, neighbourhood_cleansed=Downtown, room_type=Entire home/apt
+Prediction: $461.61 CAD
+
